@@ -47,7 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //---
     private static final String Creat_Comentario_Table= "CREATE TABLE " + Table_Comentarios + "(" +
             Col1_Comentario_Id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            Col2_Comentario_Classificacao + " REAL, " +
+            Col2_Comentario_Classificacao + " FLOAT, " +
             Col3_Comentario_Data + " TEXT, " +
             Col4_Comentario_Id_Monumento + " INTEGER, " +
             Col15_Comentario_Username + " TEXT, " +
@@ -317,7 +317,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         res.moveToNext();
 
         comentario.setId(res.getInt(res.getColumnIndex(Col1_Comentario_Id)));
-        comentario.setClassificacao(res.getDouble(res.getColumnIndex(Col2_Comentario_Classificacao)));
+        comentario.setClassificacao(res.getFloat(res.getColumnIndex(Col2_Comentario_Classificacao)));
         comentario.setData(res.getString(res.getColumnIndex(Col3_Comentario_Data)));
         comentario.setMonumento(res.getInt(res.getColumnIndex(Col4_Comentario_Id_Monumento)));
         comentario.setUsername(res.getString(res.getColumnIndex(Col15_Comentario_Username)));
@@ -373,6 +373,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return array_list;
     }
 
+    public ArrayList<Mon> allMonumentos () {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos, null);
+
+        ArrayList<Mon> monumentos = new ArrayList<Mon>();
+
+        boolean carryOn = res.moveToFirst();
+
+        while (carryOn) {
+            Mon m = new Mon(res.getInt(0),
+                            res.getString(1),
+                            res.getString(2),
+                            res.getString(3),
+                            res.getString(4));
+
+            monumentos.add(m);
+
+            carryOn = res.moveToNext();
+        }
+
+        res.close();
+        return monumentos;
+    }
+
     //Método para return todos os Comentarios
     public ArrayList<Com> getAllComentarios() {
         ArrayList<Com> array_list = new ArrayList<Com>();
@@ -384,7 +409,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Com comentario = new Com();
 
             comentario.setId(res.getInt(res.getColumnIndex(Col1_Comentario_Id)));
-            comentario.setClassificacao(res.getDouble(res.getColumnIndex(Col2_Comentario_Classificacao)));
+            comentario.setClassificacao(res.getFloat(res.getColumnIndex(Col2_Comentario_Classificacao)));
             comentario.setData(res.getString(res.getColumnIndex(Col3_Comentario_Data)));
             comentario.setMonumento(res.getInt(res.getColumnIndex(Col4_Comentario_Id_Monumento)));
             comentario.setUsername(res.getString(res.getColumnIndex(Col15_Comentario_Username)));
@@ -438,7 +463,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return local.get(0);
     }
 
-    //Obtem o ID do Monumento com o nome  nomeMonumento---------------
+    //Obtem o ID do Monumento com o nome  nomeMonumento --------------- NÃO FUNCIONA
     public int getMonID (String nomeMonumento) {
         SQLiteDatabase rDB = this.getReadableDatabase();
 
@@ -457,6 +482,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return ID;
     }
 
+    // devolve o ID de um monumento no ArrayList de todos os monumentos ----- FUNCIONA
+    public int searchIDmonumento(String name, ArrayList<Mon> monumentos) {
+
+        for(Mon i : monumentos){
+            if(i.getNome().equals(name))
+                return i.getId();
+        }
+        return -1;
+    }
+
     //Método para return todos os Comentarios
     public ArrayList<Com> getAllComentariosMonumento(int idMonumento) {
         ArrayList<Com> array_list = new ArrayList<Com>();
@@ -468,7 +503,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Com comentario = new Com();
 
             comentario.setId(res.getInt(res.getColumnIndex(Col1_Comentario_Id)));
-            comentario.setClassificacao(res.getDouble(res.getColumnIndex(Col2_Comentario_Classificacao)));
+            comentario.setClassificacao(res.getFloat(res.getColumnIndex(Col2_Comentario_Classificacao)));
             comentario.setData(res.getString(res.getColumnIndex(Col3_Comentario_Data)));
             comentario.setMonumento(res.getInt(res.getColumnIndex(Col4_Comentario_Id_Monumento)));
             comentario.setUsername(res.getString(res.getColumnIndex(Col15_Comentario_Username)));
@@ -597,9 +632,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // criar três objetos, um de cada classe.
         Mon monumento_sample = new Mon("UBI", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", "Escola", "40°16'50.7\"N,7°30'16.9\"W");
 
-        Com comentario_sample = new Com(5.0, "28/10/2019", 1, "Adorei! 5 estrelas!", "Pedro");
-        Com comentario_sample1 = new Com(4, "3/11/2019", monumento_sample.id, "A biblioteca estava cheia...", "Rita");
-        Com comentario_sample2 = new Com(4.5, "11/11/2019", monumento_sample.id, "Excelentes professores.", "António");
+        Com comentario_sample = new Com(5.0f, "28/10/2019", 1, "Adorei! 5 estrelas!", "Pedro");
+        Com comentario_sample1 = new Com(4.0f, "3/11/2019", monumento_sample.id, "A biblioteca estava cheia...", "Rita");
+        Com comentario_sample2 = new Com(4.5f, "11/11/2019", monumento_sample.id, "Excelentes professores.", "António");
 
         Pub publicidade_sample = new Pub("Venha conhecer a UBI!");
 

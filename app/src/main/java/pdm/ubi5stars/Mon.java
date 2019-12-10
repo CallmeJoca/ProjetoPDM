@@ -16,6 +16,14 @@ public class Mon {
         setNome(nome);
     }
 
+    public Mon(int id, String nome, String info, String categoria, String localizacao) {
+        this.nome = nome;
+        this.info = info;
+        this.categoria = categoria;
+        this.localizacao = localizacao;
+        this.id = id;
+    }
+
     public Mon (String nome, String info, String categoria, String localizacao) {
         setNome(nome);
         setInfo(info);

@@ -4,7 +4,8 @@ public class Com {
 
     public String data, username, texto;
     public int id, id_monumento;
-    public double classificacao;
+    // a ratingBar devolve um float
+    public float classificacao;
 
     //------------------------------------------------------------------------
     //++++                     Construtores                               ++++
@@ -14,7 +15,13 @@ public class Com {
 
     }
 
-    public Com (double classificacao, String data, int id_monumento, String texto, String username) {
+    public Com(String texto, int id_monumento, float classificacao) {
+        this.texto = texto;
+        this.id_monumento = id_monumento;
+        this.classificacao = classificacao;
+    }
+
+    public Com (float classificacao, String data, int id_monumento, String texto, String username) {
         setClassificacao(classificacao);
         setData(data);
         setMonumento(id_monumento);
@@ -26,7 +33,7 @@ public class Com {
     //++++                        GETTERS                                 ++++
     //------------------------------------------------------------------------
 
-    public double getClassificacao() { return this.classificacao;
+    public float getClassificacao() { return this.classificacao;
     }
 
     public String getData() {
@@ -53,7 +60,7 @@ public class Com {
         this.id = id;
     }
 
-    public void setClassificacao(double classificacao) {
+    public void setClassificacao(float classificacao) {
         this.classificacao = classificacao;
     }
 

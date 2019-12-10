@@ -19,9 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewMonument">
 
+        <activity android:name=".ViewMonument">
         </activity>
+
+        <!-- Atividade para o formulário de adicionar um comentário relativo a um monuento -->
+        <activity android:name=".AddComment">
+        </activity>
+
     </application>
 
 </manifest>
