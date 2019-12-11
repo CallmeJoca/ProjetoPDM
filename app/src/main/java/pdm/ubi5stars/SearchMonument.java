@@ -20,7 +20,7 @@ public class SearchMonument extends Activity {
         dbHelper = new DatabaseHandler(this);
 
 
-        
+
 
     }
     @Override
