@@ -5,4 +5,14 @@
     <string name="add">Adicionar</string>
     <string name="go_back">Voltar</string>
     <string name="search_expression">Pesquisar</string>
+    <string-array name="spinner_values">
+        <item>Monumentos</item>
+        <item>Museus</item>
+        <item>Arte Urbana</item>
+        <item>Espaços de Lazer</item>
+        <item>Zonas Comerciais</item>
+        <item>Zonas Desportivas</item>
+        <item>Escolas</item>
+        <item>Transportes</item>
+    </string-array>
 </resources>
