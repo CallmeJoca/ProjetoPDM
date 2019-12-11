@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UBI5Stars</string>
+    <string name="ask_for_comment">Adicionar um comentário</string>
+    <string name="comment">Comentário</string>
+    <string name="add">Adicionar</string>
+    <string name="go_back">Voltar</string>
 </resources>
