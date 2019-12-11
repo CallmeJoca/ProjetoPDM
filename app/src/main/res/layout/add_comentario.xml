@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/ratingBar"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-        tools:ignore="Autofill" />
+            tools:ignore="Autofill" />
 
     <Button
             android:id="@+id/add"
