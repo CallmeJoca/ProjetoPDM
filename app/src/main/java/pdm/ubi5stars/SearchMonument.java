@@ -27,6 +27,7 @@ public class SearchMonument extends Activity {
         LinearLayout oItemWindow = (LinearLayout) findViewById(R.id.small_window);
 
 
+
     }
     @Override
     protected void onPause() {
