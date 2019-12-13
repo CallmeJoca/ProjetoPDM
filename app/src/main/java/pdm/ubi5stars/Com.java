@@ -21,12 +21,19 @@ public class Com {
         this.classificacao = classificacao;
     }
 
-    public Com (float classificacao, String data, int id_monumento, String texto, String username) {
-        setClassificacao(classificacao);
-        setData(data);
-        setMonumento(id_monumento);
-        setTexto(texto);
-        setUsername(username);
+    public Com(String data, String texto, int id_monumento, float classificacao) {
+        this.data = data;
+        this.texto = texto;
+        this.id_monumento = id_monumento;
+        this.classificacao = classificacao;
+    }
+
+    public Com(String data, String username, String texto, int id_monumento, float classificacao) {
+        this.data = data;
+        this.username = username;
+        this.texto = texto;
+        this.id_monumento = id_monumento;
+        this.classificacao = classificacao;
     }
 
     //------------------------------------------------------------------------

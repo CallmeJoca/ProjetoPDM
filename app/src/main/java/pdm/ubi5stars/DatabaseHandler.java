@@ -361,7 +361,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             monumento.setId(res.getInt(res.getColumnIndex(Col1_Monumento_Id)));
             monumento.setNome(res.getString(res.getColumnIndex(Col2_Monumento_Nome)));
             monumento.setInfo(res.getString(res.getColumnIndex(Col3_Monumento_Info)));
-            monumento.setCategoria(res.getString(res.getColumnIndex(Col4_Comentario_Id_Monumento)));
+            monumento.setCategoria(res.getString(res.getColumnIndex(Col4_Monumento_Categoria)));
             monumento.setLocalizacao(res.getString(res.getColumnIndex(Col5_Monumento_Localizacao)));
 
             array_list.add(monumento);
@@ -447,8 +447,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public String getLocalização (String nomeMonumento) {
+
         SQLiteDatabase rDB = this.getReadableDatabase();
+
         int aux;
+
         ArrayList<String> local = new ArrayList<>();
 
         String query = "Select " + Col5_Monumento_Localizacao + " from " + Table_Monumentos + " where "+ Col2_Monumento_Nome + " like '" + nomeMonumento + "'";
@@ -469,7 +472,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         int aux;
         ArrayList<Integer> monumento = new ArrayList<>();
-        String query = "Select " + Col1_Monumento_Id + " from " + Table_Monumentos + " where Nome_Monumento like " + nomeMonumento;
+        String query = "Select " + Col1_Monumento_Id + " from " + Table_Monumentos + " where Nome_Monumento like " + "'" + nomeMonumento + "'";
         Cursor cursor = rDB.rawQuery(query, null);
 
         while (cursor.moveToNext()) {
@@ -629,20 +632,71 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void populateDatabase () {
-        // criar três objetos, um de cada classe.
-        Mon monumento_sample = new Mon("UBI", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", "Escola", "40°16'50.7\"N,7°30'16.9\"W");
 
-        Com comentario_sample = new Com(5.0f, "28/10/2019", 1, "Adorei! 5 estrelas!", "Pedro");
-        Com comentario_sample1 = new Com(4.0f, "3/11/2019", monumento_sample.id, "A biblioteca estava cheia...", "Rita");
-        Com comentario_sample2 = new Com(4.5f, "11/11/2019", monumento_sample.id, "Excelentes professores.", "António");
+        String espaco = "Espaço de Lazer";
+        String mon = "Monumento";
+        String museu = "Museu";
+        String arte = "Arte Urbana";
+        String come = "Zona Comercial";
+        String desp = "Zona Desportiva";
+        String esc = "Escola";
+        String trans = "Transporte";
+
+
+
+
+        // criar três objetos, um de cada classe.
+        Mon monumento_Serra = new Mon("Serra da Estrela", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", espaco, "40.321816,-7.613841");
+        Mon monumento_Praca = new Mon("Praça do Município", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", espaco, "40.2806606,-7.5043491");
+        Mon monumento_Pelourinho = new Mon("UBI3", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", espaco, "40.282774,-7.504674");
+        Mon monumento_UBIIV = new Mon("UBI Faculdade de Ciências Sociais e Humanas", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40.288480,-7.5148922");
+        Mon monumento_UBIEng = new Mon("UBI Faculdade de Engenharia", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40.278465,-7.511785");
+        Mon monumento_UBIFAL = new Mon("UBI Faculdade de Artes e Letras", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40°16'40.3\"N,7°30'32.5\"W");
+        Mon monumento_UBIFC = new Mon("UBI Faculdade de Ciências", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40.269925, -7.493817");
+        Mon monumento_UBIFCS = new Mon("UBI Faculdade de Ciências da Saúde", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40.269925, -7.493817");
+        Mon monumento_Reitoria = new Mon("Reitoria da UBI", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40.275702, -7.509246");
+        Mon monumento_Fonte = new Mon("Fonte das Galinhas", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", esc, "40.284156, -7.501539");
+        Mon monumento_Rato = new Mon("Rotunda do Rato", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", espaco, "40.277273, -7.510689");
+        Mon monumento_Garagem = new Mon("Garagem de S. João", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", espaco, "40.281986, -7.501584");
+        Mon monumento_Igreja1 = new Mon("Igreja da Misericórdia", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.281435, -7.501579");
+        Mon monumento_Igreja2 = new Mon("Igreja de S. Tiago", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.280241, -7.503140");
+        Mon monumento_Igreja3 = new Mon("Igreja de N Sra da Conceição", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.277491, -7.496795");
+        Mon monumento_Igreja4 = new Mon("Igreja da Santíssima Trindade", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.277913, -7.496225");
+        Mon monumento_Igreja5 = new Mon("Igreja dos Penedos Altos", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.288943, -7.498707");
+        Mon monumento_Capela1 = new Mon("Capela de S. Martinho", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.278389, -7.504501");
+        Mon monumento_Capela2 = new Mon("Capela do Calvário", "Universidade da Beira Interior, situada na Cidade Neve: Covilhã", mon, "40.282603, -7.506352");
+
+        Com comentario_sample = new Com("28/10/2019", "Pedro" , "Não há neve no inverno!!!! Qual cidade neve qual quê!!!", 1, 3.0f);
+        Com comentario_sample1 = new Com("29/10/2019", "Ana" , "Péssimo, horrível, horripilante!", 10, 1.0f);
+        Com comentario_sample2 = new Com("30/10/2019", "Marco" , "Experiência única. Muito religiosa.", 15, 4.5f);
 
         Pub publicidade_sample = new Pub("Venha conhecer a UBI!");
 
         // inseri-los na base de dados.
-        insertMonumento(monumento_sample);
+        insertMonumento(monumento_Serra);
+        insertMonumento(monumento_Praca);
+        insertMonumento(monumento_Pelourinho);
+        insertMonumento(monumento_UBIIV);
+        insertMonumento(monumento_UBIEng);
+        insertMonumento(monumento_UBIFAL);
+        insertMonumento(monumento_UBIFC);
+        insertMonumento(monumento_UBIFCS);
+        insertMonumento(monumento_Reitoria);
+        insertMonumento(monumento_Fonte);
+        insertMonumento(monumento_Rato);
+        insertMonumento(monumento_Garagem);
+        insertMonumento(monumento_Igreja1);
+        insertMonumento(monumento_Igreja2);
+        insertMonumento(monumento_Igreja3);
+        insertMonumento(monumento_Igreja4);
+        insertMonumento(monumento_Igreja5);
+        insertMonumento(monumento_Capela1);
+        insertMonumento(monumento_Capela2);
+
         insertComentario(comentario_sample);
         insertComentario(comentario_sample1);
         insertComentario(comentario_sample2);
+
         insertPublicidade(publicidade_sample);
     }
 }

@@ -8,7 +8,6 @@ import android.view.View;
 public class UBI5stars extends Activity {
 
     DatabaseHandler DBhelper;
-    String monumento = "UBI";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +21,12 @@ public class UBI5stars extends Activity {
 
     // Completar com a o nome da classe (activity) para onde ir.
     public void handleButPesquisa (View v) {
-        Intent iGoToPesquisa = new Intent(this, AddComment.class);
-        iGoToPesquisa.putExtra("monumento", monumento);
-        startActivity(iGoToPesquisa);
+
     }
 
     // Completar com a o nome da classe (activity) para onde ir.
     public void handleButVerMapa (View v) {
-        //Intent iGoToVerMapa = new Intent(this, ... );
-        //startActivity(iGoToVerMapa);
+        Intent iGoToMapa = new Intent(this, Mapa.class);
+        startActivity(iGoToMapa);
     }
 }
