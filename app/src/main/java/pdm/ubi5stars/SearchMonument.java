@@ -1,9 +1,11 @@
 package pdm.ubi5stars;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -67,6 +69,11 @@ public class SearchMonument extends Activity {
     protected void onPause() {
         super.onPause();
         dbHelper.close();
+    }
+
+    public void onOpenClick(View view) {
+        Intent iOpenViewMonument = new Intent(this, ViewMonument.class);
+        startActivity(iOpenViewMonument);
     }
 }
 
