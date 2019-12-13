@@ -24,7 +24,7 @@
 
         <activity android:name=".ViewMonument">
         </activity>
-
+        <!-- Atividade para o formulário de pesquisar por um monumento por expressao/categoria -->
         <activity android:name=".SearchMonument">
         </activity>
 
