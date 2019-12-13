@@ -50,7 +50,7 @@ public class SearchMonument extends Activity {
             TextView oMonumentLocation = (TextView) oLL1.findViewById(R.id.localizacao);
             oMonumentLocation.setId(oCursor.getInt(0));
             oMonumentLocation.setText(oCursor.getString(3));
-            
+
             Button oButao = (Button) oLL1.findViewById(R.id.butao_abrir_monumento);
             oButao.setId(oCursor.getInt(0));
             oItemWindow.addView(oLL1);
