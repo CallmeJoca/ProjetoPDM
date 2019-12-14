@@ -9,11 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-// esta atividade representa o a pagina de pesquisa de monumentos por nome/tipo
+// esta atividade representa a pagina de pesquisa de monumentos por nome/tipo
 public class SearchMonument extends Activity {
 
     private SQLiteDatabase oSQLiteDB;
@@ -25,12 +24,33 @@ public class SearchMonument extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_monument);
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        oSQLiteDB = dbHelper.getWritableDatabase();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dbHelper.close();
+    }
+
+    public void onOpenClick(View view) {
+        Intent iOpenViewMonument = new Intent(this, ViewMonument.class);
+        iOpenViewMonument.putExtra("monumento", monumento);
+        startActivity(iOpenViewMonument);
+    }
+
+    public void onSearchClick(View view) {
+
         dbHelper = new DatabaseHandler(this);
         oSQLiteDB = dbHelper.getWritableDatabase();
 
+        LinearLayout oItemWindow = (LinearLayout) findViewById(R.id.small_window);
         EditText oSearchExpression = (EditText) findViewById(R.id.search_expression);
         Spinner oDropdownSearchOptions = (Spinner) findViewById(R.id.spinner);
-        LinearLayout oItemWindow = (LinearLayout) findViewById(R.id.small_window);
 
         Cursor oCursor = oSQLiteDB.query(String.valueOf(dbHelper.allMonumentos()), new String[]{"*"},null,null,null,null,null,null);
 
@@ -58,25 +78,9 @@ public class SearchMonument extends Activity {
 
             bCarryOn = oCursor.moveToNext();
         }
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        oSQLiteDB = dbHelper.getWritableDatabase();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        dbHelper.close();
-    }
 
-    public void onOpenClick(View view) {
-        Intent iOpenViewMonument = new Intent(this, ViewMonument.class);
-        startActivity(iOpenViewMonument);
-    }
 
-    public void onSearchClick(View view) {
-
+        oCursor.close();
     }
 }
 
