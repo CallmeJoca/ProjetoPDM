@@ -30,7 +30,6 @@ public class SearchMonument extends Activity {
 
         EditText oSearchExpression = (EditText) findViewById(R.id.search_expression);
         Spinner oDropdownSearchOptions = (Spinner) findViewById(R.id.spinner);
-        ScrollView oScrollView = (ScrollView) findViewById(R.id.scroll_window);
         LinearLayout oItemWindow = (LinearLayout) findViewById(R.id.small_window);
 
         Cursor oCursor = oSQLiteDB.query(String.valueOf(dbHelper.allMonumentos()), new String[]{"*"},null,null,null,null,null,null);
@@ -74,6 +73,10 @@ public class SearchMonument extends Activity {
     public void onOpenClick(View view) {
         Intent iOpenViewMonument = new Intent(this, ViewMonument.class);
         startActivity(iOpenViewMonument);
+    }
+
+    public void onSearchClick(View view) {
+
     }
 }
 
