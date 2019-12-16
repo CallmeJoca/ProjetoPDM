@@ -39,7 +39,7 @@ public class Mapa extends Activity {
         DBhelper.populateDatabase();
 
         all_monuments = new ArrayList<>();
-        all_monuments = DBhelper.getAllMonumentos();
+        all_monuments = DBhelper.allMonumentos();
         lala = new ArrayList<>();
 
         for (i=0; i<all_monuments.size(); i++) {
@@ -66,11 +66,5 @@ public class Mapa extends Activity {
                 startActivityForResult(iGoToViewMonument, 5);
             }
         });
-
-
-
-
     }
-
-
 }

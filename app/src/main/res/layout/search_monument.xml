@@ -54,7 +54,7 @@
         android:id="@+id/search_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pesquisar"
+        android:text="@string/search"
         android:onClick="onSearchClick"
         app:layout_constraintTop_toBottomOf="@id/scroll_window"
         app:layout_constraintBottom_toBottomOf="parent"

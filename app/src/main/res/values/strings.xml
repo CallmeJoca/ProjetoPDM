@@ -1,11 +1,16 @@
 <resources>
+    <string name="add">Adicionar</string>
     <string name="app_name">UBI5Stars</string>
     <string name="ask_for_comment">Adicionar um comentário</string>
     <string name="comment">Comentário</string>
-    <string name="add">Adicionar</string>
     <string name="go_back">Voltar</string>
-    <string name="search_expression">Pesquisar</string>
     <string name="monumentos">monumentos</string>
+    <string name="open">Abrir</string>
+    <string name="place_category">categoria de sitio</string>
+    <string name="place_location">localização de sitio</string>
+    <string name="place_name">nome de sitio</string>
+    <string name="search">Pesquisar</string>
+    <string name="search_expression">Pesquisar</string>
     <string-array name="spinner_values">
         <item>Monumentos</item>
         <item>Museus</item>

@@ -349,6 +349,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Método para return todos os Monumentos
+    /*
     public ArrayList<Mon> getAllMonumentos() {
         ArrayList<Mon> array_list = new ArrayList<Mon>();
 
@@ -371,7 +372,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
         return array_list;
-    }
+    }*/
 
     public ArrayList<Mon> allMonumentos () {
 
@@ -401,7 +402,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Mon> someMonumentos (String cat, String expression) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos + " WHERE " + Col4_Monumento_Categoria + "=" + cat , null);
+        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos + " WHERE " + Col4_Monumento_Categoria + "=" + cat +" AND LIKE " + "%"+ expression +"%", null);
 
         ArrayList<Mon> monumentos = new ArrayList<Mon>();
 
@@ -490,6 +491,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Obtem o ID do Monumento com o nome  nomeMonumento --------------- NÃO FUNCIONA
+    /*
     public int getMonID (String nomeMonumento) {
         SQLiteDatabase rDB = this.getReadableDatabase();
 
@@ -506,7 +508,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         int ID = monumento.get(0);
         return ID;
-    }
+    }*/
 
     // devolve o ID de um monumento no ArrayList de todos os monumentos ----- FUNCIONA
     public int searchIDmonumento(String name, ArrayList<Mon> monumentos) {

@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
@@ -11,24 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <TextView
             android:id="@+id/monument_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="nome de sitio"
-            app:layout_constraintRight_toRightOf="@id/butao_abrir_monumento"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/place_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@id/monument_category"
-            />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/butao_abrir_monumento"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/monument_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="categoria de sitio"
+            android:text="@string/place_category"
             app:layout_constraintBottom_toTopOf="@id/localizacao"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@id/butao_abrir_monumento"
@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="localização de sitio"
+            android:text="@string/place_location"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/butao_abrir_monumento"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Abrir"
+            android:text="@string/open"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:onClick="onOpenClick"
             app:layout_constraintBottom_toBottomOf="parent"

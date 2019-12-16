@@ -18,6 +18,7 @@ public class SearchMonument extends Activity {
     ArrayList<Mon> monumentos;
 
     @Override
+    // gerar o layout principal e definir o gestor de base de dados
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -25,11 +26,13 @@ public class SearchMonument extends Activity {
         dbHelper = new DatabaseHandler(this);
     }
     @Override
+    // carregar o gestor de base de dados
     protected void onResume() {
         super.onResume();
         dbHelper.getWritableDatabase();
     }
     @Override
+    // fechar o gestor de base de dados
     protected void onPause() {
         super.onPause();
         dbHelper.close();
@@ -37,7 +40,9 @@ public class SearchMonument extends Activity {
     // abrir a página individual do monumento que o utilizador pretende consultar
     public void onOpenClick(View view) {
         Intent iOpenViewMonument = new Intent(this, ViewMonument.class);
-        iOpenViewMonument.putExtra("monumento", monumentos);
+        iOpenViewMonument.putExtra("Nome", monumentos.get(view.getId()).nome);
+        iOpenViewMonument.putExtra("ID", monumentos.get(view.getId()).id);
+
         startActivity(iOpenViewMonument);
     }
     // efetuar a pesquisa e construir o layout para apresentar os resultados desta pesquisa
@@ -47,9 +52,11 @@ public class SearchMonument extends Activity {
         EditText oSearchExpression = (EditText) findViewById(R.id.search_expression);
         Spinner oDropdownSearchOptions = (Spinner) findViewById(R.id.spinner);
 
+        // chamada do controlador da base de dados para receber os campos que interessam ao utilizador
         monumentos = new ArrayList<>();
-        monumentos = dbHelper.allMonumentos();
+        monumentos = dbHelper.someMonumentos(oDropdownSearchOptions.getSelectedItem().toString() , oSearchExpression.getText().toString());
 
+        // gerar o layout dinamico para cada resultado devolvido da base de dados
         for (Mon i : monumentos){
 
             LinearLayout oLL1 = (LinearLayout) getLayoutInflater().inflate(R.layout.monument_row, null);
