@@ -398,6 +398,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return monumentos;
     }
 
+    public ArrayList<Mon> someMonumentos (String cat, String expression) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos + " WHERE " + Col4_Monumento_Categoria + "=" + cat , null);
+
+        ArrayList<Mon> monumentos = new ArrayList<Mon>();
+
+        boolean carryOn = res.moveToFirst();
+
+        while (carryOn) {
+            Mon m = new Mon(res.getInt(0),
+                    res.getString(1),
+                    res.getString(2),
+                    res.getString(3),
+                    res.getString(4));
+
+            monumentos.add(m);
+            carryOn = res.moveToNext();
+        }
+        res.close();
+        return monumentos;
+    }
+
     //Método para return todos os Comentarios
     public ArrayList<Com> getAllComentarios() {
         ArrayList<Com> array_list = new ArrayList<Com>();

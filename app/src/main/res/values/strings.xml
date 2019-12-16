@@ -5,6 +5,7 @@
     <string name="add">Adicionar</string>
     <string name="go_back">Voltar</string>
     <string name="search_expression">Pesquisar</string>
+    <string name="monumentos">monumentos</string>
     <string-array name="spinner_values">
         <item>Monumentos</item>
         <item>Museus</item>
