@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/toolbar"
-    android:title="@string/app_name">
-
-</Toolbar>
+    android:title="@string/app_name"
+    android:background="@color/colorToolbar"
+    android:titleTextColor="@color/WHITE"/>

@@ -349,30 +349,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Método para return todos os Monumentos
-    /*
-    public ArrayList<Mon> getAllMonumentos() {
-        ArrayList<Mon> array_list = new ArrayList<Mon>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos, null);
-
-        while (res.moveToNext()) {
-            Mon monumento = new Mon();
-
-            monumento.setId(res.getInt(res.getColumnIndex(Col1_Monumento_Id)));
-            monumento.setNome(res.getString(res.getColumnIndex(Col2_Monumento_Nome)));
-            monumento.setInfo(res.getString(res.getColumnIndex(Col3_Monumento_Info)));
-            monumento.setCategoria(res.getString(res.getColumnIndex(Col4_Monumento_Categoria)));
-            monumento.setLocalizacao(res.getString(res.getColumnIndex(Col5_Monumento_Localizacao)));
-
-            array_list.add(monumento);
-        }
-
-        res.close();
-        db.close();
-
-        return array_list;
-    }*/
 
     public ArrayList<Mon> allMonumentos () {
 
@@ -402,7 +378,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Mon> someMonumentos (String cat, String expression) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos + " WHERE " + Col4_Monumento_Categoria + "=" + cat +" AND LIKE " + "%"+ expression +"%", null);
+        Cursor res = db.rawQuery("SELECT * FROM " + Table_Monumentos + " WHERE " + Col4_Monumento_Categoria + "='" + cat + "' AND " + Col2_Monumento_Nome  + " LIKE " + "'%"+ expression +"%'", null);
 
         ArrayList<Mon> monumentos = new ArrayList<Mon>();
 

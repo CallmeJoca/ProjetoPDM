@@ -22,6 +22,8 @@ public class UBI5stars extends Activity {
     // Completar com a o nome da classe (activity) para onde ir.
     public void handleButPesquisa (View v) {
 
+        Intent iGoSearch = new Intent(this, SearchMonument.class);
+        startActivity(iGoSearch);
     }
 
     // Completar com a o nome da classe (activity) para onde ir.

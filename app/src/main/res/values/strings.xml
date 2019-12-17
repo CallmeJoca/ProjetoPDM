@@ -8,17 +8,19 @@
     <string name="open">Abrir</string>
     <string name="place_category">categoria de sitio</string>
     <string name="place_location">localização de sitio</string>
-    <string name="place_name">nome de sitio</string>
+    <string name="place_name">UBI Faculdade de Ciencias Sociais e Humanas</string>
     <string name="search">Pesquisar</string>
     <string name="search_expression">Pesquisar</string>
+    <string name="Tudo">Tudo</string>
     <string-array name="spinner_values">
-        <item>Monumentos</item>
-        <item>Museus</item>
+        <item>@string/Tudo</item>
+        <item>Monumento</item>
+        <item>Museu</item>
         <item>Arte Urbana</item>
-        <item>Espaços de Lazer</item>
-        <item>Zonas Comerciais</item>
-        <item>Zonas Desportivas</item>
-        <item>Escolas</item>
-        <item>Transportes</item>
+        <item>Espaço de Lazer</item>
+        <item>Zona Comercial</item>
+        <item>Zona Desportiva</item>
+        <item>Escola</item>
+        <item>Transporte</item>
     </string-array>
 </resources>

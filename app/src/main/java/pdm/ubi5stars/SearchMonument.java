@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 // esta atividade representa a pagina de pesquisa de monumentos por nome/tipo
@@ -39,9 +41,13 @@ public class SearchMonument extends Activity {
     }
     // abrir a página individual do monumento que o utilizador pretende consultar
     public void onOpenClick(View view) {
+
+        LinearLayout oLL1 = (LinearLayout) getLayoutInflater().inflate(R.layout.monument_row, null);
+        TextView oMonumentName = (TextView) oLL1.findViewById(R.id.monument_name);
+
         Intent iOpenViewMonument = new Intent(this, ViewMonument.class);
-        iOpenViewMonument.putExtra("Nome", monumentos.get(view.getId()).nome);
-        iOpenViewMonument.putExtra("ID", monumentos.get(view.getId()).id);
+        iOpenViewMonument.putExtra("Nome", oMonumentName.getText().toString());
+        iOpenViewMonument.putExtra("ID", dbHelper.searchIDmonumento(oMonumentName.getText().toString(), dbHelper.allMonumentos()));
 
         startActivity(iOpenViewMonument);
     }
@@ -53,8 +59,19 @@ public class SearchMonument extends Activity {
         Spinner oDropdownSearchOptions = (Spinner) findViewById(R.id.spinner);
 
         // chamada do controlador da base de dados para receber os campos que interessam ao utilizador
+
         monumentos = new ArrayList<>();
-        monumentos = dbHelper.someMonumentos(oDropdownSearchOptions.getSelectedItem().toString() , oSearchExpression.getText().toString());
+        if (oDropdownSearchOptions.getSelectedItem().toString().equals("Tudo")) {
+            monumentos = dbHelper.allMonumentos();
+
+        }
+        else {
+            monumentos = dbHelper.someMonumentos(oDropdownSearchOptions.getSelectedItem().toString() , oSearchExpression.getText().toString());
+        }
+
+        if (monumentos.size() == 0) {
+            Toast.makeText(getApplicationContext(), "Nenhum resultado encontrado!", Toast.LENGTH_LONG).show();
+        }
 
         // gerar o layout dinamico para cada resultado devolvido da base de dados
         for (Mon i : monumentos){
